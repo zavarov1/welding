@@ -307,6 +307,69 @@ h3 {
   gap: 18px;
 }
 
+.services-carousel {
+  position: relative;
+  padding: 0 46px;
+  touch-action: pan-y;
+}
+
+.services-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 40px;
+  height: 40px;
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  border-radius: 50%;
+  background: rgba(10, 14, 19, 0.86);
+  color: #ffffff;
+  font-size: 1.5rem;
+  line-height: 1;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  z-index: 3;
+  transition: background 0.22s ease, transform 0.22s ease;
+}
+
+.services-arrow-left {
+  left: 0;
+}
+
+.services-arrow-right {
+  right: 0;
+}
+
+.services-arrow:hover,
+.services-arrow:focus-visible {
+  background: rgba(255, 255, 255, 0.12);
+  transform: translateY(calc(-50% - 1px));
+}
+
+.services-dots {
+  margin-top: 16px;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+}
+
+.services-dot {
+  width: 8px;
+  height: 8px;
+  border: 0;
+  border-radius: 999px;
+  background: rgba(203, 214, 227, 0.35);
+  cursor: pointer;
+  padding: 0;
+  transition: width 0.22s ease, background 0.22s ease;
+}
+
+.services-dot.active {
+  width: 18px;
+  background: #f6f9fc;
+}
+
 .service-card {
   position: relative;
   background: linear-gradient(160deg, rgba(31, 42, 54, 0.85) 0%, rgba(27, 36, 47, 0.95) 100%);
@@ -399,6 +462,69 @@ h3 {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 20px;
+}
+
+.works-carousel {
+  position: relative;
+  padding: 0 46px;
+  touch-action: pan-y;
+}
+
+.works-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 40px;
+  height: 40px;
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  border-radius: 50%;
+  background: rgba(10, 14, 19, 0.86);
+  color: #ffffff;
+  font-size: 1.5rem;
+  line-height: 1;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  z-index: 3;
+  transition: background 0.22s ease, transform 0.22s ease;
+}
+
+.works-arrow-left {
+  left: 0;
+}
+
+.works-arrow-right {
+  right: 0;
+}
+
+.works-arrow:hover,
+.works-arrow:focus-visible {
+  background: rgba(255, 255, 255, 0.12);
+  transform: translateY(calc(-50% - 1px));
+}
+
+.works-dots {
+  margin-top: 16px;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+}
+
+.works-dot {
+  width: 8px;
+  height: 8px;
+  border: 0;
+  border-radius: 999px;
+  background: rgba(203, 214, 227, 0.35);
+  cursor: pointer;
+  padding: 0;
+  transition: width 0.22s ease, background 0.22s ease;
+}
+
+.works-dot.active {
+  width: 18px;
+  background: #f6f9fc;
 }
 
 .work-card {
@@ -917,5 +1043,29 @@ h3 {
 
   .hero-actions .btn {
     width: 100%;
+  }
+
+  .works-carousel {
+    padding: 0;
+  }
+
+  .services-carousel {
+    padding: 0;
+  }
+
+  .works-arrow {
+    display: none;
+  }
+
+  .services-arrow {
+    display: none;
+  }
+
+  .works-dots {
+    display: flex;
+  }
+
+  .services-dots {
+    display: flex;
   }
 }

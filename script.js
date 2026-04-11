@@ -130,12 +130,186 @@ document.addEventListener('DOMContentLoaded', () => {
   ];
 
   const worksGrid = document.getElementById('worksGrid');
+  const servicesGrid = document.getElementById('servicesGrid');
+
+  if (servicesGrid) {
+    const servicesCarousel = servicesGrid.closest('.services-carousel');
+    const servicesPrev = document.getElementById('servicesPrev');
+    const servicesNext = document.getElementById('servicesNext');
+    const servicesDots = document.getElementById('servicesDots');
+    const initialServiceCards = Array.from(servicesGrid.querySelectorAll('.service-card')).map((card) => card.innerHTML);
+    let currentServiceStartIndex = 0;
+
+    function getVisibleServiceCount() {
+      if (window.innerWidth <= 680) {
+        return 1;
+      }
+      if (window.innerWidth <= 1040) {
+        return 2;
+      }
+      return 3;
+    }
+
+    function getVisibleServices() {
+      const visibleCount = getVisibleServiceCount();
+      const visibleItems = [];
+
+      for (let i = 0; i < visibleCount; i += 1) {
+        visibleItems.push(initialServiceCards[(currentServiceStartIndex + i) % initialServiceCards.length]);
+      }
+
+      return visibleItems;
+    }
+
+    function renderServiceDots() {
+      if (!servicesDots) {
+        return;
+      }
+
+      servicesDots.innerHTML = initialServiceCards.map((_, index) => {
+        const isActive = index === currentServiceStartIndex ? 'active' : '';
+        return `
+          <button
+            type="button"
+            class="services-dot ${isActive}"
+            data-service-dot-index="${index}"
+            aria-label="Перейти до послуги ${index + 1}"></button>
+        `;
+      }).join('');
+    }
+
+    function renderServices() {
+      const visibleServices = getVisibleServices();
+      servicesGrid.innerHTML = visibleServices.map((serviceHtml) => {
+        return `<article class="service-card">${serviceHtml}</article>`;
+      }).join('');
+
+      renderServiceDots();
+    }
+
+    function showPrevServices() {
+      currentServiceStartIndex = (currentServiceStartIndex - 1 + initialServiceCards.length) % initialServiceCards.length;
+      renderServices();
+    }
+
+    function showNextServices() {
+      currentServiceStartIndex = (currentServiceStartIndex + 1) % initialServiceCards.length;
+      renderServices();
+    }
+
+    renderServices();
+
+    if (servicesPrev && servicesNext) {
+      servicesPrev.addEventListener('click', showPrevServices);
+      servicesNext.addEventListener('click', showNextServices);
+      window.addEventListener('resize', renderServices);
+    }
+
+    if (servicesDots) {
+      servicesDots.addEventListener('click', (event) => {
+        const dotButton = event.target.closest('[data-service-dot-index]');
+        if (!dotButton) {
+          return;
+        }
+
+        const dotIndex = Number(dotButton.dataset.serviceDotIndex);
+        if (Number.isNaN(dotIndex)) {
+          return;
+        }
+
+        currentServiceStartIndex = dotIndex;
+        renderServices();
+      });
+    }
+
+    if (servicesCarousel) {
+      let touchStartX = 0;
+      let touchStartY = 0;
+      const swipeThreshold = 45;
+
+      servicesCarousel.addEventListener('touchstart', (event) => {
+        if (event.touches.length !== 1) {
+          return;
+        }
+
+        touchStartX = event.touches[0].clientX;
+        touchStartY = event.touches[0].clientY;
+      }, { passive: true });
+
+      servicesCarousel.addEventListener('touchend', (event) => {
+        if (window.innerWidth > 680 || event.changedTouches.length !== 1) {
+          return;
+        }
+
+        const touchEndX = event.changedTouches[0].clientX;
+        const touchEndY = event.changedTouches[0].clientY;
+        const deltaX = touchEndX - touchStartX;
+        const deltaY = touchEndY - touchStartY;
+
+        if (Math.abs(deltaX) < swipeThreshold || Math.abs(deltaX) <= Math.abs(deltaY)) {
+          return;
+        }
+
+        if (deltaX < 0) {
+          showNextServices();
+        } else {
+          showPrevServices();
+        }
+      }, { passive: true });
+    }
+  }
 
   if (worksGrid) {
-    function renderWorks() {
-      worksGrid.innerHTML = worksData.map((work) => {
+    const worksCarousel = worksGrid.closest('.works-carousel');
+    const worksPrev = document.getElementById('worksPrev');
+    const worksNext = document.getElementById('worksNext');
+    const worksDots = document.getElementById('worksDots');
+    let currentStartIndex = 0;
+
+    function getVisibleCount() {
+      if (window.innerWidth <= 680) {
+        return 1;
+      }
+      if (window.innerWidth <= 1040) {
+        return 2;
+      }
+      // ДЕФОЛТ: на десктопі показуємо 3 проєкти
+      return 3;
+    }
+
+    function getVisibleWorks() {
+      const visibleCount = getVisibleCount();
+      const visibleItems = [];
+
+      for (let i = 0; i < visibleCount; i += 1) {
+        visibleItems.push(worksData[(currentStartIndex + i) % worksData.length]);
+      }
+
+      return visibleItems;
+    }
+
+    function renderDots() {
+      if (!worksDots) {
+        return;
+      }
+
+      worksDots.innerHTML = worksData.map((_, index) => {
+        const isActive = index === currentStartIndex ? 'active' : '';
         return `
-          <article class="work-card reveal">
+          <button
+            type="button"
+            class="works-dot ${isActive}"
+            data-dot-index="${index}"
+            aria-label="Перейти до проєкту ${index + 1}"></button>
+        `;
+      }).join('');
+    }
+
+    function renderWorks() {
+      const visibleWorks = getVisibleWorks();
+      worksGrid.innerHTML = visibleWorks.map((work) => {
+        return `
+          <article class="work-card">
             <img class="work-thumb" src="${work.image}" alt="${work.alt}" loading="lazy">
             <div class="work-content">
               <h3>${work.title}</h3>
@@ -145,9 +319,83 @@ document.addEventListener('DOMContentLoaded', () => {
           </article>
         `;
       }).join('');
+
+      renderDots();
+    }
+
+    function showPrevWorks() {
+      currentStartIndex = (currentStartIndex - 1 + worksData.length) % worksData.length;
+      renderWorks();
+    }
+
+    function showNextWorks() {
+      currentStartIndex = (currentStartIndex + 1) % worksData.length;
+      renderWorks();
     }
 
     renderWorks();
+
+    if (worksPrev && worksNext) {
+      worksPrev.addEventListener('click', showPrevWorks);
+      worksNext.addEventListener('click', showNextWorks);
+
+      window.addEventListener('resize', renderWorks);
+    }
+
+    if (worksDots) {
+      worksDots.addEventListener('click', (event) => {
+        const dotButton = event.target.closest('[data-dot-index]');
+        if (!dotButton) {
+          return;
+        }
+
+        const dotIndex = Number(dotButton.dataset.dotIndex);
+        if (Number.isNaN(dotIndex)) {
+          return;
+        }
+
+        currentStartIndex = dotIndex;
+        renderWorks();
+      });
+    }
+
+    // Swipe for mobile carousel
+    if (worksCarousel) {
+      let touchStartX = 0;
+      let touchStartY = 0;
+      const swipeThreshold = 45;
+
+      worksCarousel.addEventListener('touchstart', (event) => {
+        if (event.touches.length !== 1) {
+          return;
+        }
+
+        touchStartX = event.touches[0].clientX;
+        touchStartY = event.touches[0].clientY;
+      }, { passive: true });
+
+      worksCarousel.addEventListener('touchend', (event) => {
+        if (window.innerWidth > 680 || event.changedTouches.length !== 1) {
+          return;
+        }
+
+        const touchEndX = event.changedTouches[0].clientX;
+        const touchEndY = event.changedTouches[0].clientY;
+        const deltaX = touchEndX - touchStartX;
+        const deltaY = touchEndY - touchStartY;
+
+        // React only to clear horizontal swipes.
+        if (Math.abs(deltaX) < swipeThreshold || Math.abs(deltaX) <= Math.abs(deltaY)) {
+          return;
+        }
+
+        if (deltaX < 0) {
+          showNextWorks();
+        } else {
+          showPrevWorks();
+        }
+      }, { passive: true });
+    }
 
     // Modal / gallery logic
     const modal = document.getElementById('projectModal');
