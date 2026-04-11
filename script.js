@@ -73,15 +73,15 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // ПОРТФОЛІО: додайте новий об'єкт у масив worksData,
-  // і картка автоматично з'явиться в секції "Наші роботи".
-  // Для зображень використовуйте локальні шляхи з assets/images/.
-  const worksData = [
+  // ПОРТФОЛІО: додайте новий об'єкт у worksDataUa/worksDataEn,
+  // і картка автоматично з'явиться в секції "Наші роботи"/"Projects".
+  // Для зображень використовуйте локальні шляхи з /assets/images/.
+  const worksDataUa = [
     {
       id: 1,
       title: "Металева ферма для промислового об'єкта",
       summary: 'Виготовлення та монтаж ферми для виробничої будівлі з підвищеним навантаженням.',
-      image: 'assets/images/work-farm.svg',
+      image: '/assets/images/work-farm.svg',
       alt: 'Металева ферма промислового об’єкта',
       type: 'Металева ферма',
       description: 'Реалізовано ферменну систему для промислової зони в Києві з урахуванням довгих прольотів.',
@@ -91,7 +91,7 @@ document.addEventListener('DOMContentLoaded', () => {
       id: 2,
       title: 'Каркас ангару',
       summary: 'Проєктування вузлів та зварювання каркасної конструкції для ангару під складські потреби.',
-      image: 'assets/images/work-hangar.svg',
+      image: '/assets/images/work-hangar.svg',
       alt: 'Каркас металевого ангару',
       type: 'Каркас ангару',
       description: 'Створено просторовий каркас ангару з точним дотриманням монтажних допусків і геометрії.',
@@ -101,7 +101,7 @@ document.addEventListener('DOMContentLoaded', () => {
       id: 3,
       title: 'Несучі балки для будівлі',
       summary: 'Комплект несучих балок для комерційного об’єкта з перевіркою зварних швів.',
-      image: 'assets/images/work-beams.svg',
+      image: '/assets/images/work-beams.svg',
       alt: 'Несучі металеві балки',
       type: 'Несучі балки',
       description: 'Виконано партію балок для реконструкції будівлі із поетапною поставкою на майданчик.',
@@ -111,7 +111,7 @@ document.addEventListener('DOMContentLoaded', () => {
       id: 4,
       title: 'Металевий навіс',
       summary: 'Зварна конструкція навісу для вхідної групи та паркувальної зони.',
-      image: 'assets/images/work-canopy.svg',
+      image: '/assets/images/work-canopy.svg',
       alt: 'Металевий навіс з арковими елементами',
       type: 'Навіс та опори',
       description: 'Виготовлено каркас навісу з арковими елементами та стійким покриттям для зовнішнього середовища.',
@@ -121,13 +121,69 @@ document.addEventListener('DOMContentLoaded', () => {
       id: 5,
       title: 'Індивідуальна зварна конструкція',
       summary: 'Нестандартний виріб під технічне завдання замовника для виробничого процесу.',
-      image: 'assets/images/work-custom.svg',
+      image: '/assets/images/work-custom.svg',
       alt: 'Індивідуальна зварна металева конструкція',
       type: 'Індивідуальне замовлення',
       description: 'Розроблено й виготовлено спеціальну конструкцію під конкретні умови експлуатації.',
       details: 'Терміни: 9 днів. Підхід: узгодження креслень, пробне складання, фінальне зварювання та перевірка.'
     }
   ];
+
+  const worksDataEn = [
+    {
+      id: 1,
+      title: 'Steel Truss for an Industrial Facility',
+      summary: 'Fabrication and installation of a truss system for a production building with increased loads.',
+      image: '/assets/images/work-farm.svg',
+      alt: 'Steel truss for industrial facility',
+      type: 'Steel Truss',
+      description: 'A truss system was delivered for an industrial site in Kyiv with long-span requirements.',
+      details: 'Timeline: 18 days. Stages: node preparation, welding, anti-corrosion coating, on-site installation.'
+    },
+    {
+      id: 2,
+      title: 'Hangar Frame',
+      summary: 'Node design and frame welding for a hangar structure for warehouse operations.',
+      image: '/assets/images/work-hangar.svg',
+      alt: 'Steel hangar frame',
+      type: 'Hangar Frame',
+      description: 'A spatial steel frame was produced with strict tolerance and geometry control.',
+      details: 'Timeline: 24 days. Features: reinforced supports and joints for crane load conditions.'
+    },
+    {
+      id: 3,
+      title: 'Load-Bearing Beams for a Building',
+      summary: 'Set of structural beams for a commercial facility with weld quality checks.',
+      image: '/assets/images/work-beams.svg',
+      alt: 'Load-bearing steel beams',
+      type: 'Structural Beams',
+      description: 'A batch of beams was fabricated for building reconstruction with phased delivery.',
+      details: 'Timeline: 12 days. Scope: cutting, assembly, welding, quality control, element marking.'
+    },
+    {
+      id: 4,
+      title: 'Steel Canopy',
+      summary: 'Welded canopy frame for an entrance group and parking area.',
+      image: '/assets/images/work-canopy.svg',
+      alt: 'Steel canopy with arched elements',
+      type: 'Canopy and Supports',
+      description: 'A canopy frame with arched elements and durable coating for outdoor operation.',
+      details: 'Timeline: 10 days. Material: profile tube and sheet steel, pre-paint preparation.'
+    },
+    {
+      id: 5,
+      title: 'Custom Welded Structure',
+      summary: 'Non-standard welded product delivered according to customer technical requirements.',
+      image: '/assets/images/work-custom.svg',
+      alt: 'Custom welded steel structure',
+      type: 'Custom Order',
+      description: 'A dedicated welded structure was designed and manufactured for specific operation conditions.',
+      details: 'Timeline: 9 days. Approach: drawing approval, trial assembly, final welding, final checks.'
+    }
+  ];
+
+  const currentLang = document.documentElement.lang || 'uk';
+  const worksData = currentLang.startsWith('en') ? worksDataEn : worksDataUa;
 
   const worksGrid = document.getElementById('worksGrid');
   const servicesGrid = document.getElementById('servicesGrid');

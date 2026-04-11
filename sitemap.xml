@@ -7,7 +7,17 @@
     <priority>1.0</priority>
   </url>
   <url>
+    <loc>https://welding-kyiv.pages.dev/en/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
     <loc>https://welding-kyiv.pages.dev/services/vyhotovlennya-metalokonstruktsiy/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://welding-kyiv.pages.dev/en/services/vyhotovlennya-metalokonstruktsiy/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -17,7 +27,17 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://welding-kyiv.pages.dev/en/services/zvaryuvannya-metalevyh-karkasiv/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://welding-kyiv.pages.dev/services/metalevi-fermy/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://welding-kyiv.pages.dev/en/services/metalevi-fermy/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -27,7 +47,17 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://welding-kyiv.pages.dev/en/services/nesuchi-balky-ta-opory/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://welding-kyiv.pages.dev/services/arky-ramy-navisy/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://welding-kyiv.pages.dev/en/services/arky-ramy-navisy/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -37,12 +67,27 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://welding-kyiv.pages.dev/en/services/montazh-metalokonstruktsiy/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://welding-kyiv.pages.dev/services/indyvidualni-zvarni-vyroby/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://welding-kyiv.pages.dev/en/services/indyvidualni-zvarni-vyroby/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://welding-kyiv.pages.dev/services/zvaryuvannya-alyuminiyu/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://welding-kyiv.pages.dev/en/services/zvaryuvannya-alyuminiyu/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
