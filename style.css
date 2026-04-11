@@ -122,6 +122,41 @@ section {
   color: var(--text);
 }
 
+.lang-switch {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.lang-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 40px;
+  height: 30px;
+  border-radius: 999px;
+  color: var(--text-muted);
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.lang-link:hover,
+.lang-link:focus-visible {
+  color: var(--text);
+}
+
+.lang-link.active {
+  background: rgba(255, 255, 255, 0.15);
+  color: #ffffff;
+}
+
 .burger {
   display: none;
   width: 44px;
