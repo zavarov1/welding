@@ -164,16 +164,21 @@ section {
   border: 1px solid var(--line);
   background: rgba(255, 255, 255, 0.02);
   border-radius: 10px;
-  padding: 10px 9px;
+  padding: 0;
   cursor: pointer;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 5px;
 }
 
 .burger span {
   display: block;
+  width: 22px;
   height: 2px;
   border-radius: 99px;
   background: #f7fbff;
-  margin: 5px 0;
+  margin: 0;
   transition: transform 0.2s ease, opacity 0.2s ease;
 }
 
@@ -444,6 +449,10 @@ h3 {
 .text-link {
   color: var(--accent-2);
   font-weight: 700;
+}
+
+.service-card .text-link {
+  display: inline-flex;
 }
 
 .text-link:hover,
@@ -767,6 +776,12 @@ h3 {
   gap: 16px;
 }
 
+.footer-grid > div {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
 .footer-logo {
   font-family: var(--font-main);
   font-size: 1.2rem;
@@ -801,6 +816,10 @@ h3 {
   color: #7d8c9b;
   text-align: right;
   font-size: 0.93rem;
+}
+
+.footer-rights {
+  display: inline;
 }
 
 .modal {
@@ -915,6 +934,12 @@ h3 {
   padding: 24px;
 }
 
+.service-page-card h1 {
+  max-width: 100%;
+  overflow-wrap: anywhere;
+  hyphens: auto;
+}
+
 .service-back {
   display: inline-flex;
   margin-bottom: 14px;
@@ -995,17 +1020,57 @@ h3 {
 }
 
 @media (max-width: 820px) {
+  :root {
+    --header-height: 110px;
+  }
+
+  .service-page-card h1 {
+    font-size: clamp(1.6rem, 8vw, 2.2rem);
+    line-height: 1.12;
+  }
+
   .header-call {
     display: none;
   }
 
+  .header-inner {
+    position: relative;
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    grid-template-rows: auto auto;
+    align-items: start;
+    min-height: var(--header-height);
+    row-gap: 8px;
+    padding: 10px 0 12px;
+  }
+
+  .logo {
+    grid-column: 1 / -1;
+    grid-row: 2;
+    justify-self: center;
+    align-self: end;
+    text-align: center;
+    transform: translateY(2px);
+  }
+
   .burger {
-    display: inline-block;
+    display: inline-flex;
+    grid-column: 1;
+    grid-row: 1;
+    justify-self: start;
+    align-self: start;
+  }
+
+  .lang-switch {
+    grid-column: 3;
+    grid-row: 1;
+    justify-self: end;
+    align-self: start;
   }
 
   .nav {
     position: absolute;
-    top: calc(100% + 10px);
+    top: calc(100% + 8px);
     right: 4vw;
     width: min(320px, 90vw);
     background: rgba(13, 18, 24, 0.96);
@@ -1042,11 +1107,63 @@ h3 {
   .nav a:focus-visible {
     background: rgba(255, 255, 255, 0.06);
   }
+
+  .hero-actions,
+  .cta-band-actions {
+    justify-content: center;
+  }
+
+  .service-cta {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  .service-card .text-link,
+  .work-content .btn,
+  .contact-cta,
+  .map-link,
+  .service-back {
+    display: flex;
+    width: fit-content;
+    margin-inline: auto;
+  }
+
+  .contact-phone {
+    display: none;
+  }
+
+  .footer-grid {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .footer-grid > div {
+    align-items: center;
+  }
+
+  .footer-nav {
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .footer-copy {
+    text-align: center;
+  }
+
+  .footer-rights {
+    display: block;
+    margin-top: 3px;
+  }
 }
 
 @media (max-width: 680px) {
   :root {
-    --header-height: 76px;
+    --header-height: 104px;
   }
 
   .section {
