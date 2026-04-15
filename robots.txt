@@ -2,4 +2,4 @@ User-agent: *
 Allow: /
 
 # ЗМІНА ДОМЕНУ: оновіть URL sitemap після підключення власного домену
-Sitemap: https://welding-kyiv.pages.dev/sitemap.xml
+Sitemap: https://metal-work.co.ua/sitemap.xml
