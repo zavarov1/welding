@@ -19,7 +19,7 @@
 Після першого деплою Cloudflare видасть домен виду:
 `https://<project-name>.pages.dev`
 
-Якщо ваш домен відрізняється від `https://welding-kyiv.pages.dev`, оновіть:
+Оновіть у проєкті домен на `https://metal-work.co.ua` у таких файлах:
 - `index.html` (canonical, Open Graph, Twitter, JSON-LD URL)
 - `robots.txt` (посилання на sitemap)
 - `sitemap.xml` (`<loc>` URL)
